@@ -12,7 +12,6 @@ import Loading from "../components/Loading";
 import Cookies from "universal-cookie";
 
 interface PostData {
-  post_id: number;
   title: string;
   content: string;
   author: string;
@@ -45,7 +44,6 @@ const Create = () => {
 
       data.author = loggedAs.email;
       data.date = new Date().toISOString();
-      console.log(data);
 
       const response = await fetch("/api/createpost", {
         method: "POST",

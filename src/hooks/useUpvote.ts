@@ -25,8 +25,7 @@ const useUpvote = () => {
         }),
       });
       if (response.status === 200) {
-        const data = await response.json();
-        console.log(data);
+        await response.json();
         setRefresh((prev) => !prev);
       } else {
         console.log("Error updating upvotes/downvotes");
