@@ -24,6 +24,8 @@ export const handler: Handler = async (event, context) => {
     };
   }
 
+  context.callbackWaitsForEmptyEventLoop = false;
+
   try {
     let data: CreatePostData = JSON.parse(event.body as string);
     let authToken: string | undefined = event.headers["x-auth-token"];

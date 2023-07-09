@@ -29,6 +29,8 @@ export const handler: Handler = async (event, context) => {
     };
   }
 
+  context.callbackWaitsForEmptyEventLoop = false;
+
   try {
     const data: SignUpData = JSON.parse(event.body as string);
 

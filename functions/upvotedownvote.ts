@@ -17,6 +17,8 @@ export const handler: Handler = async (event, context) => {
     };
   }
 
+  context.callbackWaitsForEmptyEventLoop = false;
+
   try {
     let data: UpvoteDownvoteData = JSON.parse(event.body as string);
     if (data.upvote) {

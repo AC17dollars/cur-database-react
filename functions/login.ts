@@ -22,6 +22,8 @@ export const handler: Handler = async (event, context) => {
     };
   }
 
+  context.callbackWaitsForEmptyEventLoop = false;
+
   try {
     let authToken: string | undefined = event.headers["x-auth-token"];
     let decode: LoginData | undefined = undefined;
