@@ -40,7 +40,8 @@ const Create = () => {
       const data: PostData = JSON.parse(
         JSON.stringify(Object.fromEntries(formData.entries()))
       );
-      data.content = data.content.replace(/'/g, `"`);
+      data.content = data.content.replace(/'/g, "&apos;");
+      data.title = data.title.replace(/'/g, "&apos;");
 
       data.author = loggedAs.email;
       data.date = new Date().toISOString();

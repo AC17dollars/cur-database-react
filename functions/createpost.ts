@@ -36,7 +36,6 @@ export const handler: Handler = async (event, context) => {
       authToken,
       JWT_SECRET as string
     ) as LoginData;
-    console.log(data);
     if (decode.email == data.author) {
       await pool.query(
         `insert into posts (title, content, author, date, upvotes, downvotes) values ('${data.title}', '${data.content}', '${data.author}', '${data.date}', 0, 0);`
