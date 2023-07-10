@@ -9,7 +9,7 @@ const pool = new pg.Pool({
   database: PG_DATABASE,
   ssl: true,
   connectionTimeoutMillis: 0,
-  idleTimeoutMillis: 1000,
+  idleTimeoutMillis: 10,
   allowExitOnIdle: true,
   max: 3,
 });

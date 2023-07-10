@@ -21,6 +21,14 @@ export const handler: Handler = async (event, context) => {
 
   try {
     let data: UpvoteDownvoteData = JSON.parse(event.body as string);
+    if (data.post_id == 0) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          message: "Invalid post id",
+        }),
+      };
+    }
     if (data.upvote) {
       await pool.query(
         `update posts set upvotes = upvotes + 1 where post_id = ${data.post_id};`
