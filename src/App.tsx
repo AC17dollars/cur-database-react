@@ -24,7 +24,7 @@ function App() {
         setIsLoading(false);
       });
     }
-  }, [token]);
+  }, []);
 
   return (
     <>
