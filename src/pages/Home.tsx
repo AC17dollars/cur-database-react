@@ -67,7 +67,7 @@ export default function Home() {
             title={post.title}
             author={post.author}
             content={post.content}
-            date={post.date.slice(0, 10)}
+            date={post.date}
             upvotes={post.upvotes}
             downvotes={post.downvotes}
           />

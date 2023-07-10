@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import useUpvote from "../hooks/useUpvote";
+import dayjs from "dayjs";
+import RelativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(RelativeTime);
 
 interface PostsProps {
   post_id: number;
@@ -77,9 +80,14 @@ const Posts: React.FC<PostsProps> = ({
         />
       </div>
       <div className="flex flex-col w-full text-left">
-        <div className="flex w-full gap-3 items-baseline ml-1">
-          <span className="sm:text-md text-sm font-semibold">{author}</span>
-          <span className="text-sm font-light">Posted on: {date}</span>
+        <div className="flex w-full gap-2 items-baseline ml-1">
+          <span className="sm:text-md text-sm font-semibold">{author}</span>•
+          {/* if date is larger than 1 day difference show date else show relative */}
+          <span className="text-sm font-light">
+            {dayjs().diff(dayjs(date), "day") > 1
+              ? dayjs(date).format("YYYY-MM-DD")
+              : dayjs(date).fromNow()}
+          </span>
         </div>
         <div className="sm:text-2xl md:text-3xl text-xl my-2 font-bold">
           {title}

@@ -61,7 +61,7 @@ const ProfileMenu: React.FC = () => {
       <div>
         <button
           type="button"
-          className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium rounded-ee-2xl rounded-ss-2xl bg-slate-50"
+          className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium rounded-ee-2xl rounded-ss-2xl bg-slate-50 hover:bg-sky-200"
           id="options-menu"
           aria-expanded="true"
           aria-haspopup="true"
