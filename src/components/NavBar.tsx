@@ -33,9 +33,17 @@ export default function NavBar() {
         </div>
         <div className="flex items-center justify-end">
           <div className="flex items-center justify-center h-10 space-x-4">
-            <NavLink to="/about" className="text-lg font-medium text-white">
+            <a
+              href="https://github.com/AC17dollars/cur-database-react"
+              target="_blank"
+              rel="noreferrer"
+              className="text-lg font-medium text-white"
+            >
               About
-            </NavLink>
+            </a>
+            {/* <NavLink to="/about" className="text-lg font-medium text-white">
+              About
+            </NavLink> */}
             <ProfileMenu />
           </div>
         </div>

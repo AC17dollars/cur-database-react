@@ -5,9 +5,13 @@ const RightBar = () => {
         <div className="flex flex-col gap-3 items-baseline ml-1">
           <span className="text-md font-semibold flex gap-2 items-center">
             cur-Database
-            <span className="text-sm font-light">© 2021</span>
+            <span className="text-sm font-light">© 2023</span>
           </span>
           <span className="text-sm font-light">AC17dollars</span>
+          <span className="text-sm font-light">
+            A Web UI made using ReactJS with tailwind and typescript integrating
+            a postgreSQL database.
+          </span>
         </div>
       </div>
     </div>
