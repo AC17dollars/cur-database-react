@@ -41,17 +41,19 @@ export const handler: Handler = async (event, context) => {
     hash.update(pw_and_salt);
     const hashedPasswordWSalt = hash.digest("hex");
 
-    let result = await pool.query(
+    const [rows] = await pool.query(
       `insert into userlogin(email, password, salt) values ('${data.email}', '${hashedPasswordWSalt}', '${salt}') returning id;`
     );
-    let result2 = await pool.query(
-      `insert into userdata(name, dob, user_id) values('${data.name}', '${data.dob}', '${result.rows[0].id}');`
+    let result = rows as { id: number }[];
+    const [rows2] = await pool.query(
+      `insert into userdata(name, dob, user_id) values('${data.name}', '${data.dob}', '${result[0].id}');`
     );
+    let result2 = rows2 as { name: string; dob: string; user_id: number }[];
 
     const token = jwt.sign(
       { email: data.email, password: data.password },
       JWT_SECRET as string,
-      { expiresIn: 60 }
+      { expiresIn: "1d" }
     );
 
     return {
@@ -59,7 +61,7 @@ export const handler: Handler = async (event, context) => {
       body: JSON.stringify({
         token: token,
         email: data.email,
-        name: result.rows[0].name,
+        name: result2[0].name,
       }),
     };
   } catch (err) {

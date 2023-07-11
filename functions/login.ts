@@ -42,13 +42,14 @@ export const handler: Handler = async (event, context) => {
     const data: LoginData = decode || JSON.parse(event.body as string);
     const hash = crypto.createHash("sha256");
 
-    let result = await pool.query(
+    const [rows] = await pool.query(
       `select email, password, salt from userlogin where email='${data.email}';`
     );
-    if (result.rows.length === 0) {
+    let result = rows as DatabaseData[];
+    if (result.length === 0) {
       throw new Error("No user found");
     }
-    const user: DatabaseData = result.rows[0];
+    const user: DatabaseData = result[0];
     const pass_and_salt = data.password + user.salt;
     hash.update(pass_and_salt);
     const hashedPasswordWSalt = hash.digest("hex");
@@ -56,9 +57,10 @@ export const handler: Handler = async (event, context) => {
     if (hashedPasswordWSalt !== user.password) {
       throw new Error("Password is incorrect.");
     }
-    let result2 = await pool.query(
+    const [rows2] = await pool.query(
       `select name from userdata inner join userlogin on id=user_id where email='${data.email}';`
     );
+    let result2 = rows2 as { name: string }[];
 
     const token = jwt.sign(
       { email: data.email, password: data.password },
@@ -70,7 +72,7 @@ export const handler: Handler = async (event, context) => {
       body: JSON.stringify({
         token: token,
         email: data.email,
-        name: result2.rows[0].name,
+        name: result2[0].name,
       }),
     };
   } catch (err) {
