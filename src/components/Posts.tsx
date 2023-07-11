@@ -84,7 +84,7 @@ const Posts: React.FC<PostsProps> = ({
           <span className="sm:text-md text-sm font-semibold">{author}</span>•
           {/* if date is larger than 1 day difference show date else show relative */}
           <span className="text-sm font-light">
-            {dayjs().diff(dayjs(date), "day") > 1
+            {dayjs().diff(dayjs(date), "hours") > 24
               ? dayjs(date).format("YYYY-MM-DD")
               : dayjs(date).fromNow()}
           </span>
