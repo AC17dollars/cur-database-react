@@ -9,8 +9,10 @@ const RightBar = () => {
           </span>
           <span className="text-sm font-light">AC17dollars</span>
           <span className="text-sm font-light">
-            A Web UI made using ReactJS with tailwind and typescript integrating
-            a postgreSQL database.
+            A Web UI made using ReactJS, tailwind and typescript integrating a
+            &nbsp;<span className="line-through">postgreSQL</span>&nbsp;
+            <span className="font-bold">mySQL</span>
+            &nbsp;database.
           </span>
         </div>
       </div>
