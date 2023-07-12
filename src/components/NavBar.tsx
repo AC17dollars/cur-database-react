@@ -33,9 +33,12 @@ export default function NavBar() {
         <div className="flex items-center justify-start">
           <NavLink
             to="/"
-            className="flex items-center justify-center h-10 text-2xl font-bold text-white"
+            className="flex items-center justify-center h-10 text-2xl font-bold text-white hover:[&_#db]:text-red-500 hover:[&_#cur]:text-red-500"
           >
-            <span className="text-[#61dafb]">cur-Database</span>
+            <span id="cur" className="text-[#61dafb]">
+              cur-
+            </span>
+            <span id="db">Database</span>
           </NavLink>
         </div>
         {goHome && (
