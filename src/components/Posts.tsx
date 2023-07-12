@@ -85,7 +85,7 @@ const Posts: React.FC<PostsProps> = ({
           {/* if date is larger than 1 day difference show date else show relative */}
           <span className="text-sm font-light">
             {dayjs().diff(dayjs(date), "hours") > 24
-              ? dayjs(date).format("YYYY-MM-DD")
+              ? dayjs(date).format("YYYY-MM-DD HH:mm")
               : dayjs(date).fromNow()}
           </span>
         </div>
