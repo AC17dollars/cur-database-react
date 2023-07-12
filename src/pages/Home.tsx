@@ -1,6 +1,7 @@
 import { SetStateAction, useEffect, useState } from "react";
 import Posts from "../components/Posts";
 import RightBar from "../components/RightBar";
+import AlertLogin from "../components/AlertLogin";
 
 interface PostData {
   post_id: number;
@@ -15,6 +16,7 @@ interface PostData {
 export default function Home() {
   const [posts, setPosts] = useState<PostData[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
+  const [showAlert, setShowAlert] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<
     "date" | "popular" | "controversy" | "upvotes"
   >("date");
@@ -66,11 +68,11 @@ export default function Home() {
   const defaultPosts: PostData[] = [
     {
       post_id: 0,
-      title: "Loading...",
-      content: "Loading...",
-      author: "Loading...",
-      date: "Loading...",
-      upvotes: 0,
+      title: "ERROR LOADING POSTS",
+      content: "An error has occured while loading the posts.",
+      author: "ADMIN",
+      date: new Date().toISOString(),
+      upvotes: 17,
       downvotes: 0,
     },
   ];
@@ -105,34 +107,38 @@ export default function Home() {
   }, [refresh]);
 
   return (
-    <div className="flex items-center justify-start w-full h-full">
-      <div className="flex w-1/4"></div>
-      <div className="flex flex-col items-center justify-center w-full h-full bg-slate-200 mx-4 px-4 shadow-md shadow-black">
-        <div className="lg:flex w-full h-full hidden">
-          <SortBy sortBy={sortBy} setSortBy={setSortBy} />
+    <>
+      {showAlert && <AlertLogin setShowAlert={setShowAlert} />}
+      <div className="flex items-center justify-start w-full h-full">
+        <div className="flex w-1/4"></div>
+        <div className="flex flex-col items-center justify-center w-full h-full bg-slate-200 mx-4 px-4 shadow-md shadow-black">
+          <div className="lg:flex w-full h-full hidden">
+            <SortBy sortBy={sortBy} setSortBy={setSortBy} />
+          </div>
+          <div className="lg:hidden w-full h-full flex">
+            <MobileSortBy sortBy={sortBy} setSortBy={setSortBy} />
+          </div>
+          {posts.map((post) => (
+            <Posts
+              setShowAlert={setShowAlert}
+              setRefresh={setRefresh}
+              key={post.post_id}
+              post_id={post.post_id}
+              title={post.title}
+              author={post.author}
+              content={post.content}
+              date={post.date}
+              upvotes={post.upvotes}
+              downvotes={post.downvotes}
+            />
+          ))}
         </div>
-        <div className="lg:hidden w-full h-full flex">
-          <MobileSortBy sortBy={sortBy} setSortBy={setSortBy} />
+        <div className="block sm:hidden w-1/5"></div>
+        <div className="w-2/3 justify-center hidden sm:block">
+          <RightBar />
         </div>
-        {posts.map((post) => (
-          <Posts
-            setRefresh={setRefresh}
-            key={post.post_id}
-            post_id={post.post_id}
-            title={post.title}
-            author={post.author}
-            content={post.content}
-            date={post.date}
-            upvotes={post.upvotes}
-            downvotes={post.downvotes}
-          />
-        ))}
       </div>
-      <div className="block sm:hidden w-1/5"></div>
-      <div className="w-2/3 justify-center hidden sm:block">
-        <RightBar />
-      </div>
-    </div>
+    </>
   );
 }
 const SortBy = ({

@@ -10,6 +10,7 @@ import Cookies from "universal-cookie";
 import Loading from "./components/Loading";
 import Create from "./pages/Create";
 import Page404 from "./pages/404";
+import Post from "./pages/SinglePost";
 
 function App() {
   const { isAuthenticated, login, logout, signup } = useAuthentication();
@@ -45,6 +46,7 @@ function App() {
             <Route path="/login" Component={Login} />
             <Route path="/create" Component={Create} />
             <Route path="*" Component={Page404} />
+            <Route path="/post/:id" Component={Post} />
           </Routes>
         </BrowserRouter>
       </AppContext.Provider>

@@ -6,13 +6,20 @@ import LoggedIcon from "../assets/man.png";
 
 export default function NavBar() {
   const [sticky, setSticky] = useState(true);
+  const [goHome, setGoHome] = useState(false);
 
   const location = useLocation();
+  // const number: string | undefined = location.pathname.split("/")[2];
   useEffect(() => {
     if (location.pathname === "/") {
       setSticky(true);
     } else {
       setSticky(false);
+    }
+    if (location.pathname.split("/")[1] === "post") {
+      setGoHome(true);
+    } else {
+      setGoHome(false);
     }
   }, [location.pathname]);
 
@@ -20,7 +27,7 @@ export default function NavBar() {
     <nav
       className={`${
         sticky ? "sticky" : "fixed"
-      } top-0 left-0 z-10 w-full h-20 bg-[#2f3231] backdrop-blur shadow-2xl flex`}
+      } top-0 left-0 z-50 w-full h-20 bg-[#2f3231] backdrop-blur shadow-2xl flex`}
     >
       <div className="flex items-center justify-between w-full h-full px-4 mx-auto">
         <div className="flex items-center justify-start">
@@ -31,6 +38,13 @@ export default function NavBar() {
             <span className="text-[#61dafb]">cur-Database</span>
           </NavLink>
         </div>
+        {goHome && (
+          <div className="flex items-center justify-center h-10 text-xl font-bold text-white bg-zinc-500 rounded p-5 hover:bg-zinc-600 hover:text-blue-400">
+            <Link to="/" className="sm:flex hidden items-center justify-center">
+              &lt;Home /&gt;
+            </Link>
+          </div>
+        )}
         <div className="flex items-center justify-end">
           <div className="flex items-center justify-center h-10 space-x-4">
             <a

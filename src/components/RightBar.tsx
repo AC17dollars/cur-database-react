@@ -1,6 +1,6 @@
 const RightBar = () => {
   return (
-    <div className="fixed right-0 top-32 w-1/3 rounded-md text-md bg-slate-200 shadow-md ">
+    <div className="fixed right-0 top-32 w-1/3 rounded-md text-md bg-slate-200 shadow-md">
       <div className="flex flex-col">
         <div className="flex flex-col gap-3 items-baseline ml-1">
           <span className="text-md font-semibold flex gap-2 items-center">
