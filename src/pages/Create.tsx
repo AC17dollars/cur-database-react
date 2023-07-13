@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import AppContext from "../misc/AppContext";
 import Loading from "../components/Loading";
 import Cookies from "universal-cookie";
+import AlertError from "../components/AlertError";
 
 interface PostData {
   title: string;
@@ -24,6 +25,7 @@ const Create = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [value, setValue] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isError, setIsError] = useState(true);
   const onChange = (event: BaseSyntheticEvent) => setValue(event.target.value);
   const MIN_TEXTAREA_HEIGHT = 150;
 
@@ -59,6 +61,7 @@ const Create = () => {
       if (response.status === 200) {
         navigator("/");
       } else {
+        setIsError(true);
       }
     }
   }
@@ -74,6 +77,7 @@ const Create = () => {
   }, [value]);
   return (
     <>
+      {isError && <AlertError setIsError={setIsError} />}
       {isSubmitting && <Loading />}
       <div className="min-h-screen items-center justify-center flex">
         <div className="flex flex-col lg:w-1/2 md:w-3/5 sm:w-4/5 w-full items-center gap-4 p-6 m-6 bg-slate-200 rounded-xl shadow-md">

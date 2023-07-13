@@ -8,12 +8,14 @@ import {
   useState,
 } from "react";
 import Loading from "../components/Loading";
+import AlertError from "../components/AlertError";
 
 const Login = () => {
   const { loggedAs, login } = useContext(AppContext);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const navigator = useNavigate();
 
@@ -25,6 +27,7 @@ const Login = () => {
 
   return (
     <>
+      {isError && <AlertError setIsError={setIsError} />}
       {isSubmitting && <Loading />}
       <div className="flex items-center justify-center min-h-screen py-2 bg-slate-50">
         <div className="flex flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8">
@@ -52,6 +55,8 @@ const Login = () => {
                   e.target?.reset();
                 }
                 setIsSubmitting(false);
+                setIsError(true);
+                passwordRef.current!.value = "";
               }}
             >
               <div className="flex flex-col items-start w-full">
@@ -109,6 +114,7 @@ const Login = () => {
                     name="remember_me"
                     type="checkbox"
                     className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                    defaultChecked
                   />
                   <label
                     htmlFor="remember_me"

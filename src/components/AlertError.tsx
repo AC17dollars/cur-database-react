@@ -43,7 +43,7 @@ const AlertError = ({
         </div>
         <div>
           <p className="font-bold text-xl">Error</p>
-          <p className="text-sm text-lg">Something went wrong.</p>
+          <p className="text-lg">Something went wrong.</p>
         </div>
       </div>
     </div>
