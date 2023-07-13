@@ -41,12 +41,18 @@ export const handler: Handler = async (event, context) => {
     hash.update(pw_and_salt);
     const hashedPasswordWSalt = hash.digest("hex");
 
+    await pool.query(
+      `insert into userlogin(email, password, salt) values ('${data.email}', '${hashedPasswordWSalt}', '${salt}');`
+    );
     const [rows] = await pool.query(
-      `insert into userlogin(email, password, salt) values ('${data.email}', '${hashedPasswordWSalt}', '${salt}') returning id;`
+      `select id from userlogin where email = '${data.email}';`
     );
     let result = rows as { id: number }[];
-    const [rows2] = await pool.query(
+    await pool.query(
       `insert into userdata(name, dob, user_id) values('${data.name}', '${data.dob}', '${result[0].id}');`
+    );
+    const [rows2] = await pool.query(
+      `select * from userdata where user_id = '${result[0].id}';`
     );
     let result2 = rows2 as { name: string; dob: string; user_id: number }[];
 
