@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 interface UserInformation {
+  id: number;
   email: string;
   name: string;
 }

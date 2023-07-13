@@ -2,6 +2,7 @@ import { useState } from "react";
 import Cookies from "universal-cookie";
 
 interface UserInformation {
+  id: number;
   email: string;
   name: string;
 }
@@ -39,7 +40,11 @@ const useAuthentication = () => {
         const data = await response.json();
         const cookie = new Cookies();
         cookie.set("token", data?.token!, { path: "/" });
-        setIsAuthenticated({ email: data?.email, name: data?.name });
+        setIsAuthenticated({
+          email: data?.email,
+          name: data?.name,
+          id: data?.id,
+        });
         return true;
       } else {
         new Cookies().remove("token");
@@ -67,7 +72,11 @@ const useAuthentication = () => {
       const data = await response.json();
       const cookie = new Cookies();
       cookie.set("token", data?.token!, { path: "/" });
-      setIsAuthenticated({ email: data?.email, name: data?.name });
+      setIsAuthenticated({
+        email: data?.email,
+        name: data?.name,
+        id: data?.id,
+      });
     } catch (err) {
       console.log(err);
       return false;

@@ -68,6 +68,7 @@ export const handler: Handler = async (event, context) => {
         token: token,
         email: data.email,
         name: result2[0].name,
+        id: result2[0].user_id,
       }),
     };
   } catch (err) {

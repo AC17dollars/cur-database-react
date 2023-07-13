@@ -1,4 +1,3 @@
-import { is } from "bluebird";
 import pool from "./db";
 import { Handler } from "@netlify/functions";
 

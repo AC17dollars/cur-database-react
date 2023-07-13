@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 const { JWT_SECRET } = process.env;
 
 interface LoginData {
+  id: number;
   email: string;
   password: string;
 }
@@ -58,9 +59,9 @@ export const handler: Handler = async (event, context) => {
       throw new Error("Password is incorrect.");
     }
     const [rows2] = await pool.query(
-      `select name from userdata inner join userlogin on id=user_id where email='${data.email}';`
+      `select id, name from userdata inner join userlogin on id=user_id where email='${data.email}';`
     );
-    let result2 = rows2 as { name: string }[];
+    let result2 = rows2 as { name: string; id: number }[];
 
     const token = jwt.sign(
       { email: data.email, password: data.password },
@@ -71,6 +72,7 @@ export const handler: Handler = async (event, context) => {
       statusCode: 200,
       body: JSON.stringify({
         token: token,
+        id: result2[0].id,
         email: data.email,
         name: result2[0].name,
       }),
