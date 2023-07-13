@@ -2,7 +2,6 @@ import { SetStateAction, useEffect, useState } from "react";
 import Posts from "../components/Posts";
 import RightBar from "../components/RightBar";
 import AlertLogin from "../components/AlertLogin";
-import Loading from "../components/Loading";
 
 interface PostData {
   post_id: number;

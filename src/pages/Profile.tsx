@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 import dayjs from "dayjs";
