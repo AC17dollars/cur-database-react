@@ -40,15 +40,16 @@ const useAuthentication = () => {
         const cookie = new Cookies();
         cookie.set("token", data?.token!, { path: "/" });
         setIsAuthenticated({ email: data?.email, name: data?.name });
+        return true;
       } else {
         new Cookies().remove("token");
         setIsAuthenticated(false);
+        return false;
       }
     } catch (err) {
       console.log(err);
       return false;
     }
-    return true;
   };
 
   const signup = async (props: SignUpData) => {
