@@ -46,7 +46,7 @@ export const handler: Handler = async (event, context) => {
     let user: UserData = rows[0] as UserData;
 
     const [rows2] = await pool.query(
-      `SELECT post_id, title, upvotes, downvotes, date from posts inner join userlogin on author=email where id = '${query.id}';`
+      `SELECT post_id, title, upvotes, downvotes, date from posts inner join userlogin on author=email where id = '${query.id}' order by date desc;`
     );
     let posts: PostData[] = rows2 as PostData[];
     posts.forEach((post) => {

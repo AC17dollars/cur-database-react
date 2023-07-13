@@ -25,7 +25,7 @@ const Create = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [value, setValue] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isError, setIsError] = useState(true);
+  const [isError, setIsError] = useState(false);
   const onChange = (event: BaseSyntheticEvent) => setValue(event.target.value);
   const MIN_TEXTAREA_HEIGHT = 150;
 

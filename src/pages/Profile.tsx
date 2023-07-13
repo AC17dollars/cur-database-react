@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 import dayjs from "dayjs";
 import RelativeTime from "dayjs/plugin/relativeTime";
-import AppContext from "../misc/AppContext";
 import Error from "./Error";
 import Loading from "../components/Loading";
 dayjs.extend(RelativeTime);
@@ -31,7 +30,6 @@ const Profile = () => {
   const [profileData, setProfileData] = useState<UserPostData>();
   const [isError, setIsError] = useState(false);
   const location = useLocation();
-  const { loggedAs } = useContext(AppContext);
 
   async function fetchUserPosts(email: string) {
     const response = await fetch(`/api/user?id=${email}`);
@@ -50,20 +48,6 @@ const Profile = () => {
       setProfileData(data);
     });
   }, []);
-
-  if (!loggedAs) {
-    return (
-      <div className="flex flex-col items-center justify-center w-full min-h-screen gap-2">
-        Not Logged In
-        <Link
-          to="/login"
-          className="border rounded-md border-blue-400 bg-blue-400 text-white p-2 hover:bg-blue-500"
-        >
-          Login
-        </Link>
-      </div>
-    );
-  }
 
   if (isError) {
     return <Error />;
