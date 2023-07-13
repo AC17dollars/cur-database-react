@@ -10,11 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bluebird": "^3.7.2",
     "dayjs": "^1.11.9",
     "jsonwebtoken": "^9.0.1",
     "mysql2": "^3.5.1",
-    "pg": "^8.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
@@ -23,10 +21,8 @@
   },
   "devDependencies": {
     "@netlify/functions": "^1.6.0",
-    "@types/bluebird": "^3.5.38",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^20.4.1",
-    "@types/pg": "^8.10.2",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
