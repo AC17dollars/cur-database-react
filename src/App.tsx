@@ -43,7 +43,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" Component={Home} />
-            <Route path="/profile/:user?" Component={Profile} />
+            <Route path="/profile/:user" Component={Profile} />
             <Route path="/post/:id" Component={Post} />
             <Route path="/login" Component={Login} />
             <Route path="/signup" Component={SignUp} />

@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import RelativeTime from "dayjs/plugin/relativeTime";
 import AppContext from "../misc/AppContext";
 import Error from "./Error";
+import Loading from "../components/Loading";
 dayjs.extend(RelativeTime);
 
 interface UserPostData {
@@ -29,7 +30,6 @@ interface UserData {
 const Profile = () => {
   const [profileData, setProfileData] = useState<UserPostData>();
   const [isError, setIsError] = useState(false);
-  const navigator = useNavigate();
   const location = useLocation();
   const { loggedAs } = useContext(AppContext);
 
@@ -40,13 +40,6 @@ const Profile = () => {
     else return false;
   }
   const profileID = location.pathname.split("/")[2];
-
-  useEffect(() => {
-    if (location.pathname == "/profile" && loggedAs) {
-      navigator(`/profile/${loggedAs.id}`);
-    } else if (!loggedAs && location.pathname == "/profile") {
-    }
-  }, [loggedAs]);
 
   useEffect(() => {
     fetchUserPosts(profileID).then((data) => {
@@ -76,7 +69,7 @@ const Profile = () => {
     return <Error />;
   }
   if (!profileData) {
-    return null;
+    return <Loading />;
   }
   return (
     <div className="flex flex-col w-full lg:w-2/3 min-h-screen pt-24 px-6 mx-auto">

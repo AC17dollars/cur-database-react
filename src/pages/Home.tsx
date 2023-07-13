@@ -2,6 +2,7 @@ import { SetStateAction, useEffect, useState } from "react";
 import Posts from "../components/Posts";
 import RightBar from "../components/RightBar";
 import AlertLogin from "../components/AlertLogin";
+import Loading from "../components/Loading";
 
 interface PostData {
   post_id: number;
@@ -110,7 +111,7 @@ export default function Home() {
     <>
       {showAlert && <AlertLogin setShowAlert={setShowAlert} />}
       <div className="flex items-center justify-start w-full h-full">
-        <div className="flex w-1/4"></div>
+        <div className="md:w-1/4 md:block hidden"></div>
         <div className="flex flex-col items-center justify-center w-full h-full bg-slate-200 mx-4 px-4 shadow-md shadow-black">
           <div className="lg:flex w-full h-full hidden">
             <SortBy sortBy={sortBy} setSortBy={setSortBy} />
@@ -133,7 +134,7 @@ export default function Home() {
             />
           ))}
         </div>
-        <div className="block sm:hidden w-1/5"></div>
+        <div className="block md:hidden md:w-1/5"></div>
         <div className="w-2/3 justify-center hidden sm:block">
           <RightBar />
         </div>

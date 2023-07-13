@@ -102,7 +102,7 @@ const ProfileMenu: React.FC = () => {
             {loggedAs && (
               <>
                 <Link
-                  to="/profile"
+                  to={`/profile/${loggedAs.id}`}
                   className="block px-4 py-2 font-bold text-md text-gray-900 hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
                   onClick={() => setIsMenuOpen(false)}
