@@ -49,4 +49,8 @@ Open your browser and visit http://localhost:8888 to access the application.
 
 ## Feedbacks
 
-For any questions or feedback, please reach out to me on Github.
+For any questions or feedback, please reach out to my
+
+email: [abhinav@chalisezabhinav.com.np](mailto:abhinav@chalisezabhinav.com.np)
+
+email: [chalisezabhinav@gmail.com](mailto:chalisezabhinav@gmail.com)
