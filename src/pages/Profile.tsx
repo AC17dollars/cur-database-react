@@ -63,7 +63,7 @@ const Profile = () => {
       if (loggedAs && loggedAs.id == parseInt(profileID))
         setIsCurrentUser(true);
     });
-  }, [refetch]);
+  }, [refetch, profileID]);
 
   async function handleDelete(post_id: number) {
     console.log(new Cookies().get("token"));

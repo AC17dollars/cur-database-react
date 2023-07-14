@@ -38,6 +38,8 @@ const Edit = () => {
   useEffect(() => {
     if (!loggedAs) {
       navigator("/login");
+    } else {
+      fetchPost();
     }
   }, [loggedAs]);
 
@@ -62,10 +64,6 @@ const Edit = () => {
       navigator("/");
     }
   }
-
-  useEffect(() => {
-    fetchPost();
-  }, []);
 
   async function updatePost(e: BaseSyntheticEvent) {
     e.preventDefault();

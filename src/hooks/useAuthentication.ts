@@ -39,7 +39,7 @@ const useAuthentication = () => {
       if (response.status === 200) {
         const data = await response.json();
         const cookie = new Cookies();
-        cookie.set("token", data?.token!);
+        cookie.set("token", data?.token!, { path: "/" });
         setIsAuthenticated({
           email: data?.email,
           name: data?.name,
@@ -71,7 +71,7 @@ const useAuthentication = () => {
       });
       const data = await response.json();
       const cookie = new Cookies();
-      cookie.set("token", data?.token!);
+      cookie.set("token", data?.token!, { path: "/" });
       setIsAuthenticated({
         email: data?.email,
         name: data?.name,
