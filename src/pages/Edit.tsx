@@ -51,7 +51,7 @@ const Edit = () => {
       textareaRef.current!.scrollHeight,
       MIN_TEXTAREA_HEIGHT
     )}px`;
-  }, [value]);
+  }, [value, textareaRef.current?.defaultValue]);
 
   const postID = location.pathname.split("/")[2];
 
