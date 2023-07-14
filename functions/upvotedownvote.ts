@@ -8,7 +8,7 @@ interface UpvoteDownvoteData {
 }
 
 export const handler: Handler = async (event, context) => {
-  if (event.httpMethod !== "POST") {
+  if (event.httpMethod !== "PATCH") {
     return {
       statusCode: 400,
       body: JSON.stringify({

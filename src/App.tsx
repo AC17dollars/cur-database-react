@@ -12,6 +12,7 @@ import Create from "./pages/Create";
 import Page404 from "./pages/404";
 import Post from "./pages/SinglePost";
 import Profile from "./pages/Profile";
+import Edit from "./pages/Edit";
 
 function App() {
   const { isAuthenticated, login, logout, signup } = useAuthentication();
@@ -48,6 +49,7 @@ function App() {
             <Route path="/login" Component={Login} />
             <Route path="/signup" Component={SignUp} />
             <Route path="/create" Component={Create} />
+            <Route path="/edit/:id" Component={Edit} />
             <Route path="*" Component={Page404} />
           </Routes>
         </BrowserRouter>
