@@ -69,19 +69,23 @@ const useAuthentication = () => {
           dob: dob,
         }),
       });
-      const data = await response.json();
-      const cookie = new Cookies();
-      cookie.set("token", data?.token!, { path: "/" });
-      setIsAuthenticated({
-        email: data?.email,
-        name: data?.name,
-        id: data?.id,
-      });
+      if (response.status == 200) {
+        const data = await response.json();
+        const cookie = new Cookies();
+        cookie.set("token", data?.token!, { path: "/" });
+        setIsAuthenticated({
+          email: data?.email,
+          name: data?.name,
+          id: data?.id,
+        });
+        return true;
+      } else {
+        throw new Error("DB error");
+      }
     } catch (err) {
       console.log(err);
       return false;
     }
-    return true;
   };
 
   const logout = () => {

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import AppContext from "../misc/AppContext";
 import { BaseSyntheticEvent, useContext, useEffect, useState } from "react";
 import Loading from "../components/Loading";
+import AlertError from "../components/AlertError";
 
 interface SignUpData {
   name: string;
@@ -15,6 +16,7 @@ const SignUp = () => {
   const { loggedAs, signup } = useContext(AppContext);
   const [passwordError, setPasswordError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const navigator = useNavigate();
 
@@ -42,12 +44,15 @@ const SignUp = () => {
       JSON.stringify(Object.fromEntries(formData.entries()))
     );
 
-    await signup(data);
+    const signedup = await signup(data);
     setIsSubmitting(false);
+    if(!signedup)
+      setIsError(true);
   }
 
   return (
     <>
+      {isError && <AlertError setIsError={setIsError} />}
       {isSubmitting && <Loading />}
       <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-slate-50">
         <div className="flex flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8">
